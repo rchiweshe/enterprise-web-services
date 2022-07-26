@@ -1,4 +1,4 @@
 package zw.co.econet.servicepromotions.domain;
 
-public class DomainMarkerInterface {
+public interface DomainMarkerInterface {
 }

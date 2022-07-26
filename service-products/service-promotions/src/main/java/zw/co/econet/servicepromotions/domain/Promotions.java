@@ -18,6 +18,8 @@ public class Promotions {
     private Long id;
     private String name;
     private String description;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private LocalDateTime dateCreated;
     private LocalDateTime dateLastModified;
     private EntityStatus entityStatus;
@@ -70,14 +72,24 @@ public class Promotions {
         this.entityStatus = entityStatus;
     }
 
+    public LocalDateTime getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDateTime getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDateTime enndDate) {
+        this.endDate = enndDate;
+    }
+
     @Override
     public String toString() {
-        return "Promotions{" + "id=" + id + "," +
-                " name='" + name + '\'' +
-                ", description='" + description +
-                '\'' + ", dateCreated=" + dateCreated +
-                ", dateLastModified=" + dateLastModified +
-                ", entityStatus=" + entityStatus +
-                '}';
+        return "Promotions{" + "id=" + id + ", name='" + name + '\'' + ", description='" + description + '\'' + ", startDate=" + startDate + ", enndDate=" + endDate + ", dateCreated=" + dateCreated + ", dateLastModified=" + dateLastModified + ", entityStatus=" + entityStatus + '}';
     }
 }
