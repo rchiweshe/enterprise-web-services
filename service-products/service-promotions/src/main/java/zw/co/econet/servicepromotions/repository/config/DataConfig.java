@@ -11,4 +11,5 @@ import zw.co.econet.servicepromotions.repository.RepositoryMarkerInterface;
 @EntityScan(basePackageClasses = {DomainMarkerInterface.class})
 public class DataConfig {
 
+
 }
