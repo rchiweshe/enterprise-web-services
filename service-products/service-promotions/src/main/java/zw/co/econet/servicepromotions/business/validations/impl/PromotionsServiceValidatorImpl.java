@@ -4,6 +4,7 @@ import zw.co.econet.servicepromotions.business.validations.api.PromotionsService
 import zw.co.econet.servicepromotions.util.requests.PromotionsRequest;
 
 public class PromotionsServiceValidatorImpl implements PromotionsServiceValidator {
+
     @Override
     public boolean promotionsRequestIsValidForCreation(PromotionsRequest promotionsRequest) {
 

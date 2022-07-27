@@ -9,6 +9,8 @@ import zw.co.econet.servicepromotions.business.validations.api.PromotionsService
 import zw.co.econet.servicepromotions.domain.Promotion;
 import zw.co.econet.servicepromotions.repository.PromotionsRepository;
 import zw.co.econet.servicepromotions.util.dto.PromotionDto;
+import zw.co.econet.servicepromotions.util.enums.I18Code;
+import zw.co.econet.servicepromotions.util.i18.api.MessageService;
 import zw.co.econet.servicepromotions.util.requests.PromotionsRequest;
 import zw.co.econet.servicepromotions.util.response.PromotionsResponse;
 
@@ -18,30 +20,38 @@ public class PromotionsServiceImpl implements PromotionService {
     private PromotionsRepository promotionsRepository;
     private ModelMapper modelMapper;
     private PromotionsServiceAuditable promotionsServiceAuditable;
+    private MessageService messageService;
 
     public PromotionsServiceImpl(PromotionsServiceValidator promotionsServiceValidator,
                                  PromotionsRepository promotionsRepository,
                                  ModelMapper modelMapper,
-                                 PromotionsServiceAuditable promotionsServiceAuditable) {
+                                 PromotionsServiceAuditable promotionsServiceAuditable,
+                                 MessageService messageService) {
         this.promotionsServiceValidator = promotionsServiceValidator;
         this.promotionsRepository = promotionsRepository;
         this.modelMapper = modelMapper;
         this.promotionsServiceAuditable = promotionsServiceAuditable;
+        this.messageService = messageService;
     }
 
     @Override
     public PromotionsResponse createPromotion(PromotionsRequest promotionsRequest, Locale locale, String username) {
 
         boolean isRequestValid = promotionsServiceValidator.promotionsRequestIsValidForCreation(promotionsRequest);
+        String message = "";
 
         if (!isRequestValid) {
-            return buildPromotionsResponse(400, false, "Invalid request supplied", null);
+            message = messageService.getMessage(I18Code.MESSAGE_PROMOTION_INVALID_REQUEST.getCode(), new String[]{},
+                    locale);
+            return buildPromotionsResponse(400, false, message, null);
         }
 
         Optional<Promotion> promotionRetrieved = promotionsRepository.findByName(promotionsRequest.getName());
 
         if (promotionRetrieved.isPresent()) {
-            return buildPromotionsResponse(400, false, "Record already exists", null);
+            message = messageService.getMessage(I18Code.MESSAGE_PROMOTION_EXISTS.getCode(), new String[]{},
+                    locale);
+            return buildPromotionsResponse(400, false, message, null);
         }
 
         Promotion promotionToBeSaved = modelMapper.map(promotionsRequest, Promotion.class);
@@ -50,7 +60,10 @@ public class PromotionsServiceImpl implements PromotionService {
 
         PromotionDto promotionDtoReturned = modelMapper.map(promotionSaved, PromotionDto.class);
 
-        return buildPromotionsResponse(201, true, "Record successfully created", promotionDtoReturned);
+        message = messageService.getMessage(I18Code.MESSAGE_PROMOTION_CREATED_SUCCESSFULLY.getCode(), new String[]{},
+                locale);
+
+        return buildPromotionsResponse(201, true, message, promotionDtoReturned);
 
     }
 
