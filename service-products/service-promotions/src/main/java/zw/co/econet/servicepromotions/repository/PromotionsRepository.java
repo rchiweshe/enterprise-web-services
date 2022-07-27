@@ -1,9 +1,11 @@
 package zw.co.econet.servicepromotions.repository;
 
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import zw.co.econet.servicepromotions.domain.Promotions;
+import zw.co.econet.servicepromotions.domain.Promotion;
 
-public interface PromotionsRepository extends JpaRepository<Promotions, Long>, JpaSpecificationExecutor<Promotions> {
-
+public interface PromotionsRepository extends JpaRepository<Promotion, Long>, JpaSpecificationExecutor<Promotion> {
+    Promotion save(Promotion promotion);
+    Optional<Promotion> findByName(String name);
 }

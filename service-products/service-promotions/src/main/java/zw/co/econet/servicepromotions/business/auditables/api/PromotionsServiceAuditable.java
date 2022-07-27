@@ -1,10 +1,10 @@
 package zw.co.econet.servicepromotions.business.auditables.api;
 
 import java.util.Locale;
-import zw.co.econet.servicepromotions.domain.Promotions;
+import zw.co.econet.servicepromotions.domain.Promotion;
 
 public interface PromotionsServiceAuditable {
-    public Promotions createPromotion(Promotions promotions, Locale locale, String username);
+    public Promotion createPromotion(Promotion promotions, Locale locale, String username);
 }
 
 
