@@ -9,8 +9,8 @@ import zw.co.econet.servicepromotions.business.validations.api.PromotionsService
 import zw.co.econet.servicepromotions.domain.Promotion;
 import zw.co.econet.servicepromotions.repository.PromotionsRepository;
 import zw.co.econet.servicepromotions.util.dto.PromotionDto;
-import zw.co.econet.servicepromotions.util.enums.I18Code;
-import zw.co.econet.servicepromotions.util.i18.api.MessageService;
+import zw.co.econet.enterprise.web.services.common.utils.enums.I18Code;
+import zw.co.econet.enterprise.web.services.common.utils.i18.api.MessageService;
 import zw.co.econet.servicepromotions.util.requests.PromotionsRequest;
 import zw.co.econet.servicepromotions.util.response.PromotionsResponse;
 

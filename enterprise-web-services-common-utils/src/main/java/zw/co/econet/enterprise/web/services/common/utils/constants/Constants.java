@@ -1,4 +1,4 @@
-package zw.co.econet.servicepromotions.util.constants;
+package zw.co.econet.enterprise.web.services.common.utils.constants;
 
 public class Constants {
 

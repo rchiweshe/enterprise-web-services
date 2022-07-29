@@ -1,4 +1,4 @@
-package zw.co.econet.servicepromotions.util.i18.api;
+package zw.co.econet.enterprise.web.services.common.utils.i18.api;
 
 import java.util.Locale;
 

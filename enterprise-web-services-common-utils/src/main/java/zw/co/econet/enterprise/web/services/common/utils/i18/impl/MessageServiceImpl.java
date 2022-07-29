@@ -1,8 +1,8 @@
-package zw.co.econet.servicepromotions.util.i18.impl;
+package zw.co.econet.enterprise.web.services.common.utils.i18.impl;
 
 import java.util.Locale;
 import org.springframework.context.MessageSource;
-import zw.co.econet.servicepromotions.util.i18.api.MessageService;
+import zw.co.econet.enterprise.web.services.common.utils.i18.api.MessageService;
 
 public class MessageServiceImpl implements MessageService {
     private MessageSource messageSource;
