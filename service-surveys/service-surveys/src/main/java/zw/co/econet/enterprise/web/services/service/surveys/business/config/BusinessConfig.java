@@ -59,11 +59,6 @@ public class BusinessConfig {
     }
 
     @Bean
-    ModelMapper modelMapper() {
-        return new ModelMapper();
-    }
-
-    @Bean
     public SurveyServiceAuditable surveyServiceAuditable(SurveyRepository surveyRepository){
 
         return new SurveyServiceAuditableImpl(surveyRepository);

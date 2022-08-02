@@ -20,8 +20,7 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build()
-         .apiInfo(new ApiInfoBuilder().version("1.0").title("Incident Management System API").
-                 description("Documentation Incident Management System API v1.0").build());
+         .apiInfo(new ApiInfoBuilder().version("1.0").title("Incident Management System API").description("Documentation Incident Management System API v1.0").build());
     }
 
 }
