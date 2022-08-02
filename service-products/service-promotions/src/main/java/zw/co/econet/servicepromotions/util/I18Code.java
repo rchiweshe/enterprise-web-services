@@ -1,4 +1,4 @@
-package zw.co.econet.enterprise.web.services.common.utils.enums;
+package zw.co.econet.servicepromotions.util;
 
 public enum I18Code {
 

@@ -8,8 +8,8 @@ import zw.co.econet.servicepromotions.business.logic.api.PromotionService;
 import zw.co.econet.servicepromotions.business.validations.api.PromotionsServiceValidator;
 import zw.co.econet.servicepromotions.domain.Promotion;
 import zw.co.econet.servicepromotions.repository.PromotionsRepository;
+import zw.co.econet.servicepromotions.util.I18Code;
 import zw.co.econet.servicepromotions.util.dto.PromotionDto;
-import zw.co.econet.enterprise.web.services.common.utils.enums.I18Code;
 import zw.co.econet.enterprise.web.services.common.utils.i18.api.MessageService;
 import zw.co.econet.servicepromotions.util.requests.PromotionsRequest;
 import zw.co.econet.servicepromotions.util.response.PromotionsResponse;
@@ -43,6 +43,7 @@ public class PromotionsServiceImpl implements PromotionService {
         if (!isRequestValid) {
             message = messageService.getMessage(I18Code.MESSAGE_PROMOTION_INVALID_REQUEST.getCode(), new String[]{},
                     locale);
+
             return buildPromotionsResponse(400, false, message, null);
         }
 
