@@ -24,6 +24,7 @@ import zw.co.econet.enterprise.web.services.service.surveys.util.dto.AnswerDto;
 import zw.co.econet.enterprise.web.services.service.surveys.util.dto.AnswerOptionsDto;
 import zw.co.econet.enterprise.web.services.service.surveys.util.dto.QuestionDto;
 import zw.co.econet.enterprise.web.services.service.surveys.util.dto.SurveyDto;
+import zw.co.econet.enterprise.web.services.service.surveys.util.request.CreateSurveyRequest;
 import zw.co.econet.enterprise.web.services.service.surveys.util.response.ServiceResponse;
 
 public class SurveyServiceImpl implements SurveyService {
@@ -33,6 +34,7 @@ public class SurveyServiceImpl implements SurveyService {
     private final MessageService messageService;
     private final SurveyRepository surveyRepository;
     private final ModelMapper mapper;
+
 
     public SurveyServiceImpl(SurveyServiceAuditable surveyServiceAuditable,
                              ModelMapper modelMapper,
@@ -47,13 +49,13 @@ public class SurveyServiceImpl implements SurveyService {
     }
 
     @Override
-    public ServiceResponse save(SurveyDto surveyDto, Locale locale, String username) {
+    public ServiceResponse save(CreateSurveyRequest createSurveyRequest, Locale locale, String username) {
 
         ServiceResponse serviceResponse = new ServiceResponse();
 
         String message = "";
 
-        if(!validateSurveyDto(surveyDto)){
+        if(!validateSurveyCreationRequest(createSurveyRequest)){
             message = messageService.getMessage(I18Code.MESSAGE_SURVEY_INVALID_REQUEST.getCode(),
                     new String[]{}, locale);
            serviceResponse = buildSurveyDtoserviceResponse(400, false, message, null);
@@ -61,7 +63,7 @@ public class SurveyServiceImpl implements SurveyService {
 
         }
 
-        Optional<Survey> surveySearched = surveyRepository.findByName(surveyDto.getName());
+        Optional<Survey> surveySearched = surveyRepository.findByName(createSurveyRequest.getName());
 
         if(surveySearched.isPresent()){
             message = messageService.getMessage(I18Code.MESSAGE_SURVEY_WITH_NAME_ALREADY_EXISTS.getCode(),
@@ -70,7 +72,7 @@ public class SurveyServiceImpl implements SurveyService {
             return serviceResponse;
         }
 
-        Survey survey = modelMapper.map(surveyDto, Survey.class);
+        Survey survey = modelMapper.map(createSurveyRequest, Survey.class);
 
         Survey surveySaved = surveyServiceAuditable.save(survey,locale, username);
 
@@ -91,7 +93,7 @@ public class SurveyServiceImpl implements SurveyService {
         ServiceResponse serviceResponse = new ServiceResponse();
         String message = null;
 
-        if(!validateSurveyDto(surveyDto) || surveyDto.getId() == null){
+        if(!validateSurveyCreationRequest(surveyDto) || surveyDto.getId() == null){
 
             message = messageService.getMessage(I18Code.MESSAGE_SURVEY_INVALID_EDIT_REQUEST.getCode(),
                     new String[]{}, locale);
@@ -136,6 +138,13 @@ public class SurveyServiceImpl implements SurveyService {
 
         return serviceResponse;
 
+    }
+
+    private boolean validateSurveyCreationRequest(SurveyDto surveyDto) {
+        if (surveyDto.getId() == null) {
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -374,18 +383,18 @@ public class SurveyServiceImpl implements SurveyService {
 
     }
 
-    public Boolean validateSurveyDto(SurveyDto surveyDto){
+    public Boolean validateSurveyCreationRequest(CreateSurveyRequest createSurveyRequest){
 
-        if(surveyDto == null){
+        if(createSurveyRequest == null){
             return false;
         }
 
-        if(surveyDto.getDescription() == null || surveyDto.getName() == null){
+        if(createSurveyRequest.getDescription() == null || createSurveyRequest.getName() == null){
 
             return false;
         }
 
-        if(surveyDto.getName().trim().isEmpty() || surveyDto.getDescription().trim().isEmpty()){
+        if(createSurveyRequest.getName().trim().isEmpty() || createSurveyRequest.getDescription().trim().isEmpty()){
 
             return false;
 

@@ -22,6 +22,7 @@ import zw.co.econet.enterprise.web.services.service.surveys.util.I18Code;
 import zw.co.econet.enterprise.web.services.service.surveys.util.dto.AnswerDto;
 import zw.co.econet.enterprise.web.services.service.surveys.util.dto.QuestionDto;
 import zw.co.econet.enterprise.web.services.service.surveys.util.dto.SurveyDto;
+import zw.co.econet.enterprise.web.services.service.surveys.util.request.CreateAnswerRequest;
 import zw.co.econet.enterprise.web.services.service.surveys.util.request.QuestionEditRequest;
 import zw.co.econet.enterprise.web.services.service.surveys.util.request.QuestionRequest;
 import zw.co.econet.enterprise.web.services.service.surveys.util.response.ServiceResponse;
@@ -65,9 +66,9 @@ public class QuestionServiceImpl implements QuestionService {
 
         QuestionDto questionDto = mapper.map(questionSaved,QuestionDto.class);
 
-        if(questionRequest.getAnswerDtoSet()!= null)
+        if(questionRequest.getCreateAnswerRequestSet()!= null)
         {
-            Set<AnswerDto> answerDtoSet = saveAnswers(questionRequest.getAnswerDtoSet(),questionSaved);
+            Set<AnswerDto> answerDtoSet = saveAnswers(questionRequest.getCreateAnswerRequestSet(),questionSaved);
             questionDto.setAnswerDtoSet(answerDtoSet);
         }
 
@@ -80,13 +81,13 @@ public class QuestionServiceImpl implements QuestionService {
         return serviceResponse;
     }
 
-    public Set<AnswerDto> saveAnswers(Set<AnswerDto> answerDtoSet,Question question)
+    public Set<AnswerDto> saveAnswers(Set<CreateAnswerRequest> createAnswerRequestSet, Question question)
     {
         Set<AnswerDto> answerDtoHashSet = new HashSet<AnswerDto>();
 
-        for (AnswerDto answerDto:answerDtoSet) {
+        for (CreateAnswerRequest createAnswerRequest:createAnswerRequestSet) {
 
-            Answers answerConverted = mapper.map(answerDto,Answers.class);
+            Answers answerConverted = mapper.map(createAnswerRequest,Answers.class);
 
             answerConverted.setQuestion(question);
             Answers answerSaved = answersRepository.save(answerConverted);

@@ -1,5 +1,6 @@
 package zw.co.econet.enterprise.web.services.service.surveys.business.config;
 
+import org.mapstruct.factory.Mappers;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,6 +28,7 @@ import zw.co.econet.enterprise.web.services.service.surveys.repository.QuestionR
 import zw.co.econet.enterprise.web.services.service.surveys.repository.SurveyRepository;
 import zw.co.econet.enterprise.web.services.service.surveys.repository.SurveyResponseRepository;
 import zw.co.econet.enterprise.web.services.service.surveys.repository.config.DataConfig;
+import zw.co.econet.enterprise.web.services.service.surveys.util.mapper.DtoMapper;
 
 @Configuration
 @Import({DataConfig.class, UtilsConfig.class})
@@ -35,6 +37,11 @@ public class BusinessConfig {
     @Bean
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
+    }
+
+    @Bean
+    public DtoMapper dtoMapper() {
+        return Mappers.getMapper(DtoMapper.class);
     }
 
     @Bean
@@ -81,13 +88,14 @@ public class BusinessConfig {
 
     @Bean
     public SurveyResponseService surveyResponseService(ModelMapper modelMapper,
+                                                       DtoMapper dtoMapper,
                                                        SurveyResponseServiceAuditable surveyResponseServiceAuditable,
                                                        MessageService messageService,
                                                        QuestionRepository questionRepository,
                                                        SurveyServiceAuditable surveyServiceAuditable,
                                                        MsisdnParser msisdnParser){
 
-        return new SurveyResponseServiceImpl(modelMapper, surveyResponseServiceAuditable, messageService,
+        return new SurveyResponseServiceImpl(modelMapper, dtoMapper, surveyResponseServiceAuditable, messageService,
                 questionRepository, surveyServiceAuditable, msisdnParser);
     }
 }

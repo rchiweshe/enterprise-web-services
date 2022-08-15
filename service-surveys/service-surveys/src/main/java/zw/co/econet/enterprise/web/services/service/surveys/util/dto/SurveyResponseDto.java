@@ -1,9 +1,16 @@
 package zw.co.econet.enterprise.web.services.service.surveys.util.dto;
 
 import java.time.LocalDateTime;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import zw.co.econet.enterprise.web.services.common.utils.enums.RecordStatus;
 
 public class SurveyResponseDto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
 

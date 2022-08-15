@@ -9,6 +9,7 @@ import zw.co.econet.enterprise.web.services.service.surveys.business.logic.api.S
 import zw.co.econet.enterprise.web.services.service.surveys.service.processor.api.SurveyProcessor;
 import zw.co.econet.enterprise.web.services.service.surveys.util.SurveyStatus;
 import zw.co.econet.enterprise.web.services.service.surveys.util.dto.SurveyDto;
+import zw.co.econet.enterprise.web.services.service.surveys.util.request.CreateSurveyRequest;
 import zw.co.econet.enterprise.web.services.service.surveys.util.response.ServiceResponse;
 import zw.co.econet.enterprise.web.services.service.surveys.util.response.SurveyResponse;
 
@@ -23,11 +24,11 @@ public class SurveyProcessorImpl implements SurveyProcessor {
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public SurveyResponse save(SurveyDto surveyDto, Locale locale, String username) {
+    public SurveyResponse save(CreateSurveyRequest createSurveyRequest, Locale locale, String username) {
 
-        log.info("Incomming request to create a survey : {}", surveyDto.toString());
+        log.info("Incomming request to create a survey : {}", createSurveyRequest.toString());
 
-        ServiceResponse<SurveyDto> serviceResponse = surveyService.save(surveyDto, locale, username);
+        ServiceResponse<SurveyDto> serviceResponse = surveyService.save(createSurveyRequest, locale, username);
 
         SurveyResponse surveyResponse = createSurveyDtoResponse(serviceResponse);
 

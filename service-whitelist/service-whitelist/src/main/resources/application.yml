@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    active: prod
+server:
+  port: 9013
+
+logging:
+  level:
+    root: INFO
+    org:
+      springframework: ERROR
+      hibernate: ERROR
+    zw.co.econet: DEBUG
+  pattern:
+    file: '%d - %-5level %logger{36} - %msg%n'
+    console:  '%d - %-5level %logger{36} - %msg%n'
+  file:
+    name: /data/logs/smart-city/whitelist-microservice.log

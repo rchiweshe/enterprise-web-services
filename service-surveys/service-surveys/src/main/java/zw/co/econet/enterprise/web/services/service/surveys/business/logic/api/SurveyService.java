@@ -4,11 +4,12 @@ import java.util.Locale;
 import org.springframework.data.domain.Pageable;
 import zw.co.econet.enterprise.web.services.service.surveys.util.SurveyStatus;
 import zw.co.econet.enterprise.web.services.service.surveys.util.dto.SurveyDto;
+import zw.co.econet.enterprise.web.services.service.surveys.util.request.CreateSurveyRequest;
 import zw.co.econet.enterprise.web.services.service.surveys.util.response.ServiceResponse;
 
 public interface SurveyService {
 
-    public ServiceResponse save(SurveyDto surveyDto, Locale locale, String username);
+    public ServiceResponse save(CreateSurveyRequest createSurveyRequest, Locale locale, String username);
 
     public ServiceResponse edit(SurveyDto surveyDto, Locale locale,String username);
 

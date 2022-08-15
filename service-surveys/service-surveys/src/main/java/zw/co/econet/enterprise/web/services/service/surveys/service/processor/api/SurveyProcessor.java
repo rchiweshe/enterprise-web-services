@@ -3,11 +3,12 @@ package zw.co.econet.enterprise.web.services.service.surveys.service.processor.a
 import java.util.Locale;
 import zw.co.econet.enterprise.web.services.service.surveys.util.SurveyStatus;
 import zw.co.econet.enterprise.web.services.service.surveys.util.dto.SurveyDto;
+import zw.co.econet.enterprise.web.services.service.surveys.util.request.CreateSurveyRequest;
 import zw.co.econet.enterprise.web.services.service.surveys.util.response.SurveyResponse;
 
 public interface SurveyProcessor {
 
-    public SurveyResponse save(SurveyDto surveyDto, Locale locale, String username);
+    public SurveyResponse save(CreateSurveyRequest createSurveyRequest, Locale locale, String username);
 
     public SurveyResponse edit(SurveyDto surveyDto, Locale locale,String username);
 

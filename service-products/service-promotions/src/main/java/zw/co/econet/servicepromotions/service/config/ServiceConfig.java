@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import zw.co.econet.servicepromotions.business.logic.api.PromotionService;
 import zw.co.econet.servicepromotions.service.processors.api.PromotionsProcessor;
 import zw.co.econet.servicepromotions.service.processors.impl.PromotionsProcessorImpl;
+import zw.co.econet.servicepromotions.service.rest.PromotionsResource;
 
 @Configuration
 public class ServiceConfig {
@@ -13,5 +14,4 @@ public class ServiceConfig {
     public PromotionsProcessor promotionsProcessor(PromotionService promotionService) {
         return new PromotionsProcessorImpl(promotionService);
     }
-
 }

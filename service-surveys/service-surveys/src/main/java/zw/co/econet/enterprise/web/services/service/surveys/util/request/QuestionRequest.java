@@ -11,7 +11,7 @@ public class QuestionRequest {
 
     private String surveyId;
 
-    private Set<AnswerDto> answerDtoSet;
+    private Set<CreateAnswerRequest> createAnswerRequestSet;
 
     public String getDescription() {
         return description;
@@ -37,21 +37,18 @@ public class QuestionRequest {
         this.surveyId = surveyId;
     }
 
-    public Set<AnswerDto> getAnswerDtoSet() {
-        return answerDtoSet;
+    public Set<CreateAnswerRequest> getCreateAnswerRequestSet() {
+        return createAnswerRequestSet;
     }
 
-    public void setAnswerDtoSet(Set<AnswerDto> answerDtoSet) {
-        this.answerDtoSet = answerDtoSet;
+    public void setCreateAnswerRequestSet(Set<CreateAnswerRequest> createAnswerRequestSet) {
+        this.createAnswerRequestSet = createAnswerRequestSet;
     }
 
     @Override
     public String toString() {
-        return "QuestionRequest{" +
-                "description='" + description + '\'' +
-                ", questionNumber='" + questionNumber + '\'' +
-                ", surveyId='" + surveyId + '\'' +
-                ", answerDtoSet=" + answerDtoSet +
-                '}';
+        return "QuestionRequest{" + "description='" + description + '\'' +
+                ", questionNumber='" + questionNumber + '\'' + ", surveyId='" + surveyId +
+                '\'' + ", createAnswerRequestSet=" + createAnswerRequestSet + '}';
     }
 }

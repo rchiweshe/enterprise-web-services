@@ -22,12 +22,14 @@ import zw.co.econet.enterprise.web.services.service.surveys.domain.SurveyRespons
 import zw.co.econet.enterprise.web.services.service.surveys.repository.QuestionRepository;
 import zw.co.econet.enterprise.web.services.service.surveys.util.I18Code;
 import zw.co.econet.enterprise.web.services.service.surveys.util.dto.SurveyResponseDto;
+import zw.co.econet.enterprise.web.services.service.surveys.util.mapper.DtoMapper;
 import zw.co.econet.enterprise.web.services.service.surveys.util.response.ServiceResponse;
 import zw.co.econet.enterprise.web.services.service.surveys.util.wrapper.MsisdnWrapper;
 
 public class SurveyResponseServiceImpl implements SurveyResponseService {
 
     private final ModelMapper modelMapper;
+    private final DtoMapper dtoMapper;
     private final SurveyResponseServiceAuditable surveyResponseServiceAuditable;
     private final MessageService messageService;
     private final QuestionRepository questionRepository;
@@ -35,12 +37,14 @@ public class SurveyResponseServiceImpl implements SurveyResponseService {
     private MsisdnParser msisdnParser;
 
     public SurveyResponseServiceImpl(ModelMapper modelMapper,
+                                     DtoMapper dtoMapper,
                                      SurveyResponseServiceAuditable surveyResponseServiceAuditable,
                                      MessageService messageService,
                                      QuestionRepository questionRepository,
                                      SurveyServiceAuditable surveyServiceAuditable,
                                      MsisdnParser msisdnParser) {
         this.modelMapper = modelMapper;
+        this.dtoMapper = dtoMapper;
         this.surveyResponseServiceAuditable = surveyResponseServiceAuditable;
         this.messageService = messageService;
         this.questionRepository = questionRepository;
@@ -70,12 +74,10 @@ public class SurveyResponseServiceImpl implements SurveyResponseService {
                     new String[]{}, locale);
             serviceResponse = buildSurveyResponse(400, false, message, null);
             return serviceResponse;
-
         }
 
         List<SurveyResponse> userResponse = surveyResponseServiceAuditable.findByMsisdnAndQuestionAndSuveryId(
                 surveyResponseDto.getMsisdn(), questionSearched.get(),surveyResponseDto.getSuveryId());
-
         if (userResponse.size() > 0) {
             message = messageService.getMessage(I18Code.MESSAGE_USER_RESPONSE_ALREADY_CAPTURED.getCode(),
                     new String[]{}, locale);
@@ -92,10 +94,9 @@ public class SurveyResponseServiceImpl implements SurveyResponseService {
                     new String[]{}, locale);
             serviceResponse = buildSurveyResponse(400, false, message, null);
             return serviceResponse;
-
         }
 
-        SurveyResponse surveyResponse = modelMapper.map(surveyResponseDto, SurveyResponse.class);
+        SurveyResponse surveyResponse = dtoMapper.map(surveyResponseDto);
 
         surveyResponse.setQuestion(questionSearched.get());
 

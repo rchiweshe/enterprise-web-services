@@ -1,5 +1,5 @@
 server:
-  port: 8000
+  port: 9010
 spring:
   jpa:
     hibernate:
@@ -18,3 +18,7 @@ spring:
       minimum-idle: 20
     initialization-mode: always
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher

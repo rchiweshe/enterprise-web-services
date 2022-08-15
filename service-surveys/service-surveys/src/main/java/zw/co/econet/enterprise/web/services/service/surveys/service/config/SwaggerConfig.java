@@ -1,9 +1,9 @@
 package zw.co.econet.enterprise.web.services.service.surveys.service.config;
 
+import static springfox.documentation.builders.PathSelectors.any;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -17,10 +17,11 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("zw.co.econet.enterprise.web.services.service.surveys.service.resource"))
+                .paths(any())
                 .build()
-         .apiInfo(new ApiInfoBuilder().version("1.0").title("Incident Management System API").description("Documentation Incident Management System API v1.0").build());
+                .useDefaultResponseMessages(false)
+                ;
     }
 
 }
