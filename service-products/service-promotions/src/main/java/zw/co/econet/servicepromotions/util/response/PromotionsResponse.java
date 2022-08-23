@@ -1,9 +1,11 @@
 package zw.co.econet.servicepromotions.util.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 import zw.co.econet.enterprise.web.services.common.utils.response.CommonResponse;
 import zw.co.econet.servicepromotions.util.dto.PromotionDto;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PromotionsResponse extends CommonResponse {
 
     private PromotionDto promotionDto;

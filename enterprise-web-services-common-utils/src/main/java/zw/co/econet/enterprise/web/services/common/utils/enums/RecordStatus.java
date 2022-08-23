@@ -2,7 +2,7 @@ package zw.co.econet.enterprise.web.services.common.utils.enums;
 
 public enum RecordStatus {
 
-    DELETED("INACTIVE"), ACTIVE("ACTIVE");
+    DELETED("DELETED"), ACTIVE("ACTIVE"), INACTIVE("INACTIVE");
 
     RecordStatus(String recordStatus) {
         this.recordStatus = recordStatus;
