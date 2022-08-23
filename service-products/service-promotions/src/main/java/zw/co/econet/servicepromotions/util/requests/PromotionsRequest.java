@@ -1,13 +1,24 @@
 package zw.co.econet.servicepromotions.util.requests;
 
 import java.time.LocalDateTime;
-
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class PromotionsRequest {
 
+//    @NotEmpty(message = "The promotion name is required.")
+//    @Size(min = 1, max = 100)
     private String name;
+//    @NotEmpty(message = "The promotion description is required.")
+//    @Size(min = 30, max = 300)
     private String description;
+//    @NotNull
+//    @FutureOrPresent(message = "The start date must be today or in the future.")
     private LocalDateTime startDate;
+//    @NotNull
+//    @FutureOrPresent(message = "The end date must be today or in the future.")
     private LocalDateTime endDate;
 
     public String getName() {

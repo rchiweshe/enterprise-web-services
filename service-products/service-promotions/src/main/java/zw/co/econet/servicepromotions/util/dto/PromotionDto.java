@@ -1,8 +1,10 @@
 package zw.co.econet.servicepromotions.util.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.time.LocalDateTime;
 import zw.co.econet.servicepromotions.domain.EntityStatus;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PromotionDto {
 
     private Long id;

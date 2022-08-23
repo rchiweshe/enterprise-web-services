@@ -3,13 +3,20 @@ package zw.co.econet.servicepromotions.domain;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 @Entity
-@Table(name ="promotions")
+@Table(name ="promotions" , indexes = {
+        @Index(name = "promotions_name_index", columnList = "name")
+})
 public class Promotion {
 
     @Id
@@ -22,6 +29,8 @@ public class Promotion {
     private LocalDateTime endDate;
     private LocalDateTime dateCreated;
     private LocalDateTime dateLastModified;
+    @Column(name = "status", nullable = false)
+    @Enumerated(value = EnumType.STRING)
     private EntityStatus entityStatus;
 
     public Long getId() {
@@ -88,8 +97,21 @@ public class Promotion {
         this.endDate = enndDate;
     }
 
+    @PrePersist
+    public void setUp() {
+        dateCreated = LocalDateTime.now();
+        entityStatus = EntityStatus.ACTIVE;
+    }
+
+    @PreUpdate
+    public void update() {
+        dateLastModified = LocalDateTime.now();
+    }
+
     @Override
     public String toString() {
-        return "Promotions{" + "id=" + id + ", name='" + name + '\'' + ", description='" + description + '\'' + ", startDate=" + startDate + ", enndDate=" + endDate + ", dateCreated=" + dateCreated + ", dateLastModified=" + dateLastModified + ", entityStatus=" + entityStatus + '}';
+        return "Promotions{" + "id=" + id + ", name='" + name + '\'' + ", description='" + description
+                + '\'' + ", startDate=" + startDate + ", enndDate=" + endDate + ", dateCreated=" + dateCreated
+                + ", dateLastModified=" + dateLastModified + ", entityStatus=" + entityStatus + '}';
     }
 }

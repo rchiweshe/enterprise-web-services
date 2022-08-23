@@ -5,7 +5,9 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import java.util.Locale;
+import javax.validation.Valid;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -20,7 +22,6 @@ import zw.co.econet.servicepromotions.util.response.PromotionsResponse;
 @CrossOrigin
 @RequestMapping("/ews-promotions-management/v1/prmotions")
 public class PromotionsResource {
-
 
     private PromotionsProcessor promotionsProcessor;
 
@@ -37,12 +38,12 @@ public class PromotionsResource {
 
     @ApiOperation(value = "Create A Promotions", response = PromotionsResponse.class)
     @PostMapping(value = "")
-    public PromotionsResponse createClient(@RequestBody(required = false) final PromotionsRequest promotionsRequest,
+    public PromotionsResponse createPromotion(@Valid @RequestBody final PromotionsRequest promotionsRequest,
                                            @RequestHeader("Authorization") String authenticationToken,
                                            @ApiParam(value = Constants.LOCALE_LANGUAGE_NARRATIVE)
                                                @RequestHeader(value = Constants.LOCALE_LANGUAGE,
-                                                              defaultValue = Constants.DEFAULT_LOCALE) final Locale locale) {
+                                                              defaultValue = Constants.DEFAULT_LOCALE) final Locale locale)
+    {
         return promotionsProcessor.createPromotion(promotionsRequest,locale, authenticationToken);
     }
-
 }
