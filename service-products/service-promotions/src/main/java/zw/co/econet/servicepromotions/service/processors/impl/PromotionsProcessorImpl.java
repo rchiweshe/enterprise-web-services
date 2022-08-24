@@ -32,7 +32,7 @@ public class PromotionsProcessorImpl implements PromotionsProcessor {
     }
 
     @Override
-    public List<PromotionDto> retrievePromotion(Locale locale, String username) {
+    public PromotionsResponse retrievePromotion(Locale locale, String username) {
         logger.info("Incomming request to create all promotions");
 
         return null;

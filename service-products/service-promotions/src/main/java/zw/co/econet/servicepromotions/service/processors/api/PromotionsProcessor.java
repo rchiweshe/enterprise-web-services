@@ -11,7 +11,7 @@ public interface PromotionsProcessor {
 
     public PromotionsResponse createPromotion(PromotionsRequest promotionsRequest, Locale locale, String username);
 
-    public List<PromotionDto> retrievePromotion(Locale locale, String username);
+    public PromotionsResponse retrievePromotion(Locale locale, String username);
 
 
 }
