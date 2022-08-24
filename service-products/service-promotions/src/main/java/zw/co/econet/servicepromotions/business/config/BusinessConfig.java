@@ -24,6 +24,7 @@ public class BusinessConfig {
         return new PromotionsServiceAuditableImpl(promotionsRepository);
     }
 
+
     @Bean
     public PromotionsServiceValidator promotionsServiceValidator() {
         return new PromotionsServiceValidatorImpl();
