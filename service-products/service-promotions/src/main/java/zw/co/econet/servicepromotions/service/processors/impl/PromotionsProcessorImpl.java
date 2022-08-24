@@ -35,6 +35,10 @@ public class PromotionsProcessorImpl implements PromotionsProcessor {
     public PromotionsResponse retrievePromotion(Locale locale, String username) {
         logger.info("Incomming request to create all promotions");
 
-        return null;
+        PromotionsResponse promotionsResponse = promotionService.retrievePromotions(locale, username);
+
+        logger.info("Outgoing response for all promotions : {}", promotionsResponse);
+
+        return promotionsResponse;
     }
 }
