@@ -5,6 +5,7 @@ import zw.co.econet.servicepromotions.domain.Promotion;
 
 public interface PromotionsServiceAuditable {
     public Promotion createPromotion(Promotion promotions, Locale locale, String username);
+
 }
 
 
