@@ -46,4 +46,22 @@ public class PromotionsResource {
     {
         return promotionsProcessor.createPromotion(promotionsRequest,locale, authenticationToken);
     }
+
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Resource successfully retrieved"),
+            @ApiResponse(code = 204, message = "Request is Ok but no resource was retrieved"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+    })
+
+    @ApiOperation(value = "Retrieve Promotions", response = PromotionsResponse.class)
+    @GetMapping(value = "")
+    public PromotionsResponse retrievePromotions(@RequestHeader("Authorization") String authenticationToken,
+                                              @ApiParam(value = Constants.LOCALE_LANGUAGE_NARRATIVE)
+                                              @RequestHeader(value = Constants.LOCALE_LANGUAGE,
+                                                      defaultValue = Constants.DEFAULT_LOCALE) final Locale locale)
+    {
+        return promotionsProcessor.retrievePromotion(locale, authenticationToken);
+    }
 }

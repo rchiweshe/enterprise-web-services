@@ -6,4 +6,6 @@ import zw.co.econet.servicepromotions.util.response.PromotionsResponse;
 
 public interface PromotionService {
     PromotionsResponse createPromotion(PromotionsRequest promotionsRequest, Locale locale, String username);
+
+    PromotionsResponse retrievePromotions(Locale locale, String username);
 }
