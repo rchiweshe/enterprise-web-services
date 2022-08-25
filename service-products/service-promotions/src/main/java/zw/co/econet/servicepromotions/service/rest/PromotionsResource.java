@@ -49,6 +49,7 @@ public class PromotionsResource {
 
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Resource successfully retrieved"),
+            @ApiResponse(code = 204, message = "Request is Ok but no resource was retrieved"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")

@@ -72,20 +72,24 @@ public class PromotionsServiceImpl implements PromotionService {
 
     @Override
     public PromotionsResponse retrievePromotions(Locale locale, String username) {
+
         List<Promotion> promotions = promotionsRepository.findAll();
+
         String message = "";
+
         if(promotions.isEmpty()) {
             //edit message
             message = messageService.getMessage(I18Code.MESSAGE_PROMOTION_EXISTS.getCode(), new String[]{},
                     locale);
-            return buildPromotionsResponse(404, true, message, null, null);
+            return buildPromotionsResponse(204, true, message, null, null);
         }
+
         List<PromotionDto> promotionDtoListReturned = modelMapper.map(promotions,
                 new TypeToken<List<PromotionDto>>(){}.getType());
         //edit message
         message = messageService.getMessage(I18Code.MESSAGE_PROMOTION_CREATED_SUCCESSFULLY.getCode(), new String[]{},
                 locale);
-        return buildPromotionsResponse(201, true, message, null, promotionDtoListReturned);
+        return buildPromotionsResponse(200, true, message, null, promotionDtoListReturned);
     }
 
     private PromotionsResponse buildPromotionsResponse(int statusCode, Boolean success, String message,
