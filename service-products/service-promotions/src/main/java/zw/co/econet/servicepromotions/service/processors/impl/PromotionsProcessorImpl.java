@@ -28,6 +28,7 @@ public class PromotionsProcessorImpl implements PromotionsProcessor {
 
         logger.info("Outgoing response for creating a promotion : {}", promotionsResponse);
 
+
         return promotionsResponse;
     }
 
