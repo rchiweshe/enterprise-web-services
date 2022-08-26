@@ -6,6 +6,9 @@
     <groupId>zw.co.econet</groupId>
     <artifactId>enterprise-web-services-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <modules>
+        <module>../service-surveys/service-surveys</module>
+    </modules>
     <name>enterprise-web-services-parent</name>
     <description>enterprise web services parent</description>
 
@@ -14,6 +17,9 @@
     <properties>
         <spring-boot-starter-parent.version>2.7.2</spring-boot-starter-parent.version>
         <mysql.version>8.0.23</mysql.version>
+        <modelmapper.version>3.0.0</modelmapper.version>
+        <commons-lang3.version>3.4</commons-lang3.version>
+        <commons.versions>0.0.5-SNAPSHOT</commons.versions>
     </properties>
 
     <dependencyManagement>
@@ -46,9 +52,29 @@
                 <version>${spring-boot-starter-parent.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-validation</artifactId>
+                <version>${spring-boot-starter-parent.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>zw.co.econet</groupId>
+                <artifactId>commons</artifactId>
+                <version>${commons.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.modelmapper</groupId>
+                <artifactId>modelmapper</artifactId>
+                <version>${modelmapper.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
