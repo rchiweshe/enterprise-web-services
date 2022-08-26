@@ -1,23 +1,17 @@
-package zw.co.econet.servicepromotions.domain;
+package zw.co.econet.servicepromotions.util.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.time.LocalDateTime;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import zw.co.econet.servicepromotions.domain.EntityStatus;
 
-@Entity
-@Table(name ="promotions")
-public class Promotions {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class PromotionDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
     private Long id;
     private String name;
     private String description;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private LocalDateTime dateCreated;
     private LocalDateTime dateLastModified;
     private EntityStatus entityStatus;
@@ -46,6 +40,22 @@ public class Promotions {
         this.description = description;
     }
 
+    public LocalDateTime getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDateTime getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
+    }
+
     public LocalDateTime getDateCreated() {
         return dateCreated;
     }
@@ -72,10 +82,12 @@ public class Promotions {
 
     @Override
     public String toString() {
-        return "Promotions{" + "id=" + id + "," +
-                " name='" + name + '\'' +
-                ", description='" + description +
-                '\'' + ", dateCreated=" + dateCreated +
+        return "PromotionDto{" + "id=" + id + ", " +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", dateCreated=" + dateCreated +
                 ", dateLastModified=" + dateLastModified +
                 ", entityStatus=" + entityStatus +
                 '}';

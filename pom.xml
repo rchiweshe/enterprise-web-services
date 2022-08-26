@@ -6,6 +6,8 @@
     <modules>
         <module>enterprise-web-services-parent</module>
         <module>service-products/service-promotions</module>
+        <module>enterprise-web-services-common-utils</module>
+        <module>service-whitelist/service-whitelist</module>
     </modules>
 
     <parent>
