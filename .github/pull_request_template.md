@@ -1,12 +1,12 @@
 Tickets:
 
-- LSPLAT-4431 PLAT-5114 - export feature for casino data
+- e.g MIS-6 create promotions endpoint
 
 Affects:
 
-- [service-document-generation]
-- [service-csv-provider-casino]
-- [ui-network-admin]
+- [service-name-1]
+- [service-name-2]
+- [service-ame-3]
 
 Risks:
 
@@ -14,7 +14,7 @@ Risks:
 
 Downtime Required:
 
-- [NO]
+- [NO]/[YES]
 
 Demo Link:
 
@@ -23,7 +23,7 @@ Demo Link:
 
 Configuration Changes: 
 
-- Added build and deploy commands for new module service-csv-provider-casino in path service-document-generation/.gitlab-ci.yml
+- E.g Added build and deploy commands for new module
 
 Swagger changes:
 
@@ -40,10 +40,10 @@ New Service:
 
 Click the checkbox below to indicate adherence to these quality guidelines:
 
-- https://playsafe.atlassian.net/wiki/spaces/LITHIUM/pages/2438791178/Lithium+Code+Quality+Guidelines
+- 
   - [x] Developer
   - [ ] Peer
   - [ ] Team Lead
-
-
-Closes LSPLAT-4431
+  - [ ] Architect
+  
+Closes MIS-6
